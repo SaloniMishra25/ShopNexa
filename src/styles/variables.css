@@ -1,0 +1,24 @@
+:root {
+  /* Brand Colors */
+  --color-primary: #6C63FF;
+  --color-secondary: #00B894;
+  --color-accent: #FBBF24;
+
+  /* UI Backgrounds */
+  --color-bg: #F3F4F6;
+  --color-card: #FFFFFF;
+  --color-nav: #1F2937;
+
+  /* Text Colors */
+  --color-text-dark: #1F2937;
+  --color-text-light: #6B7280;
+  --color-text-white: #FFFFFF;
+
+  /* Alerts */
+  --color-success: #22C55E;
+  --color-error: #EF4444;
+  --color-border: #E5E7EB;
+
+  /* Shadow */
+  --color-shadow: rgba(0, 0, 0, 0.05);
+}
