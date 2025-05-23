@@ -1,0 +1,147 @@
+.orders-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-buttons button {
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.filter-buttons button:hover {
+  background-color: var(--color-secondary);
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  align-items: center;
+}
+
+.order-card {
+  width: 80%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-color: var(--color-card);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px var(--color-shadow);
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-4px);
+}
+
+.order-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  background-color: var(--color-bg);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.order-card > div {
+  flex-grow: 1;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.order-card h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.order-card p {
+  font-size: 1rem;
+  color: var(--color-text-light);
+}
+
+.order-status {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+  width: fit-content;
+}
+
+.status-pending {
+  background-color: #fff7e6;
+  color: #d48806;
+  border-color: #ffe58f;
+}
+
+.status-delivered {
+  background-color: #f6ffed;
+  color: #389e0d;
+  border-color: #b7eb8f;
+}
+
+.order-card button {
+  align-self: flex-start;
+  margin-top: 0.6rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-danger);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.order-card button:hover {
+  background-color: #ff4d4f;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .order-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 95%;
+  }
+
+  .order-card img {
+    width: 100%;
+    height: 180px;
+    padding: 0.5rem;
+  }
+
+  .order-card > div {
+    padding-left: 0;
+    padding-top: 1rem;
+    align-items: center;
+  }
+}
+

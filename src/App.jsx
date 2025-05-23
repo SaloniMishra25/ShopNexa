@@ -1,28 +1,59 @@
-import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import Navbar from "./component/navbar/Navbar";
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+
 import Home from "./pages/home/Home";
+import Footer from "./pages/footer/Footer";
+import ProductsWrapper from "./component/wrapper/ProductsWrapper";
 import ProductDetails from "./pages/productPage/ProductDetails";
+import Orders from "./pages/orders/Orders";
+import Cart from "./pages/cart/Cart";
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
-function App() {
-  const [query, setQuery] = useState("");
-  const handleAddToCart = (product) => {
-    console.log("Added to cart:", product);
-  };
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-  return (
-    <>
-      <Navbar query={query} setQuery={setQuery} />
-      <Routes>
-        <Route path="/" element={<Home query={query} />} />
+import { ThemeProvider } from "./context/ThemeContext";
 
-        <Route
-          path="/product/:id"
-          element={<ProductDetails onAddToCart={handleAddToCart} />}
-        />
-      </Routes>
-    </>
-  );
-}
+import Layout from "./component/Layout";
+
+const AppRoutes = () => (
+  <Routes>
+    {/* Public routes */}
+    <Route path="/login" element={<Login />} />
+    <Route path="/signup" element={<Signup />} />
+
+    {/* Private routes */}
+    <Route element={<ProtectedRoute />}>
+      <Route path="/" element={<Navigate to="/home" replace />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/products" element={<ProductsWrapper />} />
+      <Route path="/products/:id" element={<ProductDetails />} />
+      <Route path="/orders" element={<Orders />} />
+      <Route path="/cart" element={<Cart />} />
+    </Route>
+
+    {/* Fallback */}
+    <Route path="*" element={<Navigate to="/login" replace />} />
+  </Routes>
+);
+
+const App = () => (
+  <AuthProvider>
+    <CartProvider>
+      <ThemeProvider>
+        <div className="app-container">
+          <AppRoutes />
+          <Footer />
+          <ToastContainer position="top-right" />
+        </div>
+      </ThemeProvider>
+    </CartProvider>
+  </AuthProvider>
+);
 
 export default App;
+

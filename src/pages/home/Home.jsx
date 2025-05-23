@@ -1,25 +1,39 @@
 import React, { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import Fuse from "fuse.js";
+import ProductCard from "../../component/productCard/ProductCard";
 import "./Home.css";
 
-import ProductCard from "../../component/productCard/ProductCard";
-
-const Home = ({ query }) => {
+const Home = () => {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const { searchTerm } = useOutletContext();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        setProducts(data);
+        setFilteredProducts(data);
+      })
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
 
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(query.toLowerCase())
-  );
+  useEffect(() => {
+    if (!searchTerm?.trim()) {
+      setFilteredProducts(products);
+      return;
+    }
 
-  const onAddToCart = (product) => {
-    console.log("Added to cart : ", product);
-  };
+    const fuse = new Fuse(products, {
+      keys: ["title", "description", "category"],
+      threshold: 0.4,
+    });
+
+    const results = fuse.search(searchTerm);
+    const matchedProducts = results.map((result) => result.item);
+    setFilteredProducts(matchedProducts);
+  }, [searchTerm, products]);
 
   return (
     <div className="home">
@@ -35,17 +49,7 @@ const Home = ({ query }) => {
             <p>No products found.</p>
           ) : (
             filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={{
-                  id: product.id,
-                  name: product.title,
-                  description: product.description,
-                  price: product.price,
-                  image: product.image,
-                }}
-                onAddToCart={onAddToCart}
-              />
+              <ProductCard key={product.id} product={product} />
             ))
           )}
         </div>

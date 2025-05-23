@@ -1,0 +1,38 @@
+.back-btn {
+  position: absolute;
+  top: 70px;
+  left: 30px;
+  padding: 5px 10px;
+  background-color: var(--color-primary);
+  color: var(--color-text-white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-text-white);
+}
+
+/* 🌐 Responsive Styling */
+@media (max-width: 768px) {
+  .back-btn {
+    top: 20px;
+    left: 20px;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-btn {
+    top: 15px;
+    left: 15px;
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+}
