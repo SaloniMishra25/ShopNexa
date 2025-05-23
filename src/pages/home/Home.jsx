@@ -38,7 +38,7 @@ const Home = () => {
   return (
     <div className="home">
       <section className="hero">
-        <h1>Welcome to ShopNexa</h1>
+        <h1>Welcome to ShopNexa </h1>
         <p>Discover unique products, not just another marketplace.</p>
       </section>
 
