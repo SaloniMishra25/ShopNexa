@@ -2,7 +2,7 @@ import React from "react";
 import { useCart } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 import BackToHomeButton from "../../component/common/BackToHomeButton";
-import "./cart.css";
+import "./Cart.css";
 
 const Cart = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
