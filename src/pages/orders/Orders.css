@@ -142,7 +142,7 @@ h2 {
 /* Mobile Responsive */
 @media (max-width: 600px) {
   .orders-page {
-    margin-top: 0px;
+    margin-top: 120px;
   }
   .order-card {
     flex-direction: column;
