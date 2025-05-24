@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/home/Home";
-import Footer from "./pages/footer/Footer";
+// import Footer from "./pages/footer/Footer";
 import ProductsWrapper from "./component/wrapper/ProductsWrapper";
 import ProductDetails from "./pages/productPage/ProductDetails";
 import Orders from "./pages/orders/Orders";
@@ -46,7 +46,7 @@ const App = () => (
       <ThemeProvider>
         <div className="app-container">
           <AppRoutes />
-          <Footer />
+          {/* <Footer /> */}
         </div>
         <ToastContainer position="top-right" />
       </ThemeProvider>
