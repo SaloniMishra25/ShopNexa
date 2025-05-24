@@ -1,68 +1,53 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
-import './Auth.css';
-
+import ThemeToggle from "../../component/theme/ThemeToggle";
+import "./Auth.css";
 
 const Signup = () => {
-  const navigate = useNavigate();
-  const { signup } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
-      toast.warn("Please fill all fields");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
-
-    signup(email);
-    toast.success("Signed up successfully!");
+    const user = { email };
+    login(user);
     navigate("/home");
   };
 
   return (
-    <div className="auth-container">
-         <div className="theme-toggle-wrapper" style={{ textAlign: "right" }}>
-        <ThemeToggle />
-      </div>
+    <div className="auth-page-container">
+      <ThemeToggle />
       <div className="auth-card">
-        <h1 className="auth-brand">ShopNexa</h1>
-        <h2>Create Account</h2>
-        <form onSubmit={handleSignup}>
+        <h1 className="auth-title">ShopNexa</h1>
+        <h2 className="auth-subtitle">Create your account</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
           <input
+            className="auth-input"
             type="email"
             placeholder="Email"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
+            className="auth-input"
             type="password"
             placeholder="Password"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <button type="submit">Sign Up</button>
+          <button className="auth-button" type="submit">
+            Sign Up
+          </button>
         </form>
-        <p>
+        <p className="auth-footer">
           Already have an account?{" "}
-          <Link className="auth-link" to="/login">
-            Login here
+          <Link to="/login" className="auth-link">
+            Login
           </Link>
         </p>
       </div>

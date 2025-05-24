@@ -18,13 +18,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { ThemeProvider } from "./context/ThemeContext";
 
-import Layout from "./component/Layout";
-
 const AppRoutes = () => (
   <Routes>
     {/* Public routes */}
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<Signup />} />
+    <Route path="/" element={<Navigate to="/login" replace />} />
 
     {/* Private routes */}
     <Route element={<ProtectedRoute />}>
@@ -48,12 +47,11 @@ const App = () => (
         <div className="app-container">
           <AppRoutes />
           <Footer />
-          <ToastContainer position="top-right" />
         </div>
+        <ToastContainer position="top-right" />
       </ThemeProvider>
     </CartProvider>
   </AuthProvider>
 );
 
 export default App;
-

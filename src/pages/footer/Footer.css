@@ -3,9 +3,7 @@
   color: var(--color-text-white);
   text-align: center;
   padding: 1rem;
-  margin-top: auto;
   font-size: 0.9rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +12,6 @@
 
 .footer-links {
   margin-top: 0.5rem;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -28,9 +25,6 @@
   transition: text-decoration 0.3s ease;
 }
 
-
-
-/* Responsive tweaks */
 @media (max-width: 480px) {
   .footer {
     font-size: 0.8rem;

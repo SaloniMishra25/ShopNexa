@@ -5,9 +5,10 @@ import ProductCard from "../../component/productCard/ProductCard";
 import "./Home.css";
 
 const Home = () => {
+  const { searchTerm } = useOutletContext();
+
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const { searchTerm } = useOutletContext();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -20,17 +21,19 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (!searchTerm?.trim()) {
+    const term = searchTerm?.trim().toLowerCase();
+    if (!term) {
       setFilteredProducts(products);
       return;
     }
 
     const fuse = new Fuse(products, {
       keys: ["title", "description", "category"],
-      threshold: 0.4,
+      threshold: 0.3,
+      includeScore: true,
     });
 
-    const results = fuse.search(searchTerm);
+    const results = fuse.search(term);
     const matchedProducts = results.map((result) => result.item);
     setFilteredProducts(matchedProducts);
   }, [searchTerm, products]);
@@ -38,7 +41,7 @@ const Home = () => {
   return (
     <div className="home">
       <section className="hero">
-        <h1>Welcome to ShopNexa </h1>
+        <h1>Welcome to ShopNexa</h1>
         <p>Discover unique products, not just another marketplace.</p>
       </section>
 

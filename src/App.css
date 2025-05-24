@@ -1,13 +1,18 @@
-/* Make sure html and body take full height */
 html, body, #root {
+  top: 0px;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* Main app container (wrap your routes and footer in a flex column container) */
-#root > div {
-  display: flex;
-  flex-direction: column;
+.app-container {
   min-height: 100vh;
+  display: flex;
+
+  flex-direction: column;
+  
+}
+
+.app-container > *:first-child {
+  flex-grow: 1;
 }

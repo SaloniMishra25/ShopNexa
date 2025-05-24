@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import { FaSun, FaMoon } from "react-icons/fa"; // Import icons
+import { FaMoon, FaSun } from "react-icons/fa";
 import "./ThemeToggle.css";
 
 const ThemeToggle = () => {
@@ -8,19 +8,11 @@ const ThemeToggle = () => {
 
   return (
     <button
+      className={`theme-toggle-btn ${theme}`}
       onClick={toggleTheme}
-      aria-label="Toggle theme"
-      className="theme-toggle-btn"
+      aria-label="Toggle Theme"
     >
-      {theme === "light" ? (
-        <>
-          <FaMoon style={{ marginRight: "5px" }} /> Dark Mode
-        </>
-      ) : (
-        <>
-          <FaSun style={{ marginRight: "5px" }} /> Light Mode
-        </>
-      )}
+      {theme === "dark" ? <FaMoon className="theme-icon" /> : <FaSun className="theme-icon" />}
     </button>
   );
 };

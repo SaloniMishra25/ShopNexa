@@ -35,6 +35,12 @@ const Orders = () => {
     localStorage.setItem("orders", JSON.stringify(updated));
   };
 
+  // New function to cancel all orders
+  const cancelAllOrders = () => {
+    setOrders([]);
+    localStorage.setItem("orders", JSON.stringify([]));
+  };
+
   const filteredOrders =
     filter === "All"
       ? orders
@@ -50,6 +56,13 @@ const Orders = () => {
         <button onClick={() => setFilter("Pending")}>Pending</button>
         <button onClick={() => setFilter("Delivered")}>Delivered</button>
       </div>
+
+      {/* Cancel All Orders Button */}
+      {orders.length > 0 && (
+        <button className="cancel-all-btn" onClick={cancelAllOrders}>
+          Cancel All Orders
+        </button>
+      )}
 
       {filteredOrders.length === 0 ? (
         <p>No orders found.</p>

@@ -1,56 +1,54 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 import ThemeToggle from "../../component/theme/ThemeToggle";
-import './Auth.css';
+
+import "./Auth.css";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email.trim() || !password.trim()) {
-      toast.warn("Please enter both email and password");
-      return;
-    }
-
-    login(email);
-    toast.success("Logged in successfully!");
+    const user = { email };
+    login(user);
     navigate("/home");
   };
 
   return (
-    <div className="auth-container">
-       <div className="theme-toggle-wrapper" style={{ textAlign: "right" }}>
-        <ThemeToggle />
-      </div>
-
+    <div className="auth-page-container">
+      <ThemeToggle />
       <div className="auth-card">
-        <h1 className="auth-brand">ShopNexa</h1>
-        <h2>Welcome Back</h2>
-        <form onSubmit={handleLogin}>
+        <h1 className="auth-title">ShopNexa</h1>
+        <h2 className="auth-subtitle">Welcome Back</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
           <input
+            className="auth-input"
             type="email"
             placeholder="Email"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
+            className="auth-input"
             type="password"
             placeholder="Password"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Login</button>
+          <button className="auth-button" type="submit">
+            Login
+          </button>
         </form>
-        <p>
-          New here?{" "}
-          <Link className="auth-link" to="/signup">
-            Create an account
+        <p className="auth-footer">
+          Don't have an account?{" "}
+          <Link to="/signup" className="auth-link">
+            Create account
           </Link>
         </p>
       </div>
