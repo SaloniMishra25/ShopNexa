@@ -27,7 +27,6 @@ const AppRoutes = () => (
 
     {/* Private routes */}
     <Route element={<ProtectedRoute />}>
-      <Route path="/" element={<Navigate to="/home" replace />} />
       <Route path="/home" element={<Home />} />
       <Route path="/products" element={<ProductsWrapper />} />
       <Route path="/products/:id" element={<ProductDetails />} />
