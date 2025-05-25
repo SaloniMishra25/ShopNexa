@@ -57,7 +57,7 @@ const Orders = () => {
         <button onClick={() => setFilter("Delivered")}>Delivered</button>
       </div>
 
-      {/* Cancel All Orders Button */}
+      
       {orders.length > 0 && (
         <button className="cancel-all-btn" onClick={cancelAllOrders}>
           Cancel All Orders
