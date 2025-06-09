@@ -5,6 +5,8 @@ import Home from "./pages/home/Home";
 // import Footer from "./pages/footer/Footer";
 import ProductsWrapper from "./component/wrapper/ProductsWrapper";
 import ProductDetails from "./pages/productPage/ProductDetails";
+import Chatbot from "./component/chatbot/Chatbot";
+
 import Orders from "./pages/orders/Orders";
 import Cart from "./pages/cart/Cart";
 import Login from "./pages/auth/Login";
@@ -47,6 +49,7 @@ const App = () => (
         <div className="app-container">
           <AppRoutes />
           {/* <Footer /> */}
+          <Chatbot />
         </div>
         <ToastContainer position="top-right" />
       </ThemeProvider>
@@ -55,4 +58,3 @@ const App = () => (
 );
 
 export default App;
-
